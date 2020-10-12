@@ -1,0 +1,73 @@
+//동적할당이라는 것은 프로그램 실행중에 동적으로 메모리를 할당하는 것
+
+//여기서!중요한것은 동적으로 메모리를 할당할때 Heap(힙)영역에 할당을 한다는 것
+
+//함수 원형은 void* malloc(size_t size) 
+
+//해당 함수를 사용하기 위해서는 <stdlib.h> 헤더파일을 include 해야함.
+
+//함수 동작은 매개변수에 해당하는 size_t 만큼의 크기만큼 메모리를 할당하고
+
+//성공하면 : 할당한 메모리의 첫번째 주소 리턴
+
+//실패하면 : NULL 리턴
+
+//제일 중요한점
+
+//할당한 메모리는 무조건 해제.
+
+ 
+
+ 
+
+ 
+
+ 
+
+#include <stdio.h>
+
+#include <stdlib.h>
+
+#include<malloc.h>
+
+ 
+
+#define SIZE 10
+
+ 
+
+int main(void) {
+
+	int* p;
+
+	 
+
+	p = (int*)malloc(SIZE * sizeof(int));
+
+	if (p == NULL) {
+
+		fprintf(stderr, "메모리가 부족해서 할당할수 없습니다.\n");
+
+		exit(1);
+
+	}
+
+	for (int i = 0; i < SIZE; i ++) {
+
+		p[i] = i;
+
+	}
+
+ 
+
+	for (int i = 0; i < SIZE; i++) {
+
+		printf("%d", p[i]);
+
+	}
+
+	free(p);  //동적메모리 반환
+
+	return 0;
+
+}
