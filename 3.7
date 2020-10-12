@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+#define SIZE 6
+
+//배열과 포인터 
+
+void get_intergers(int list[]) {
+
+	printf("6개의 정수를 입력하시오: ");
+
+	for (int i = 0; i < SIZE; ++i) {
+
+		scanf_s("%d", &list[i]); //입력받음
+
+	}
+
+}
+
+int cal_sum(int list[]) {
+
+	int sum = 0;
+
+	for (int i = 0; i < SIZE; ++i) {
+
+		sum += *(list + i); // 메모리공간과 함수 호출시간을 절약하는 기법 .
+
+	}
+
+	return sum;
+
+}
+
+ 
+
+int main(void) {
+
+	int list[SIZE];
+
+	get_intergers(list);
+
+	printf("합 =%d \n", cal_sum(list));
+
+	return 0;
+
+}
