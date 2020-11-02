@@ -218,7 +218,22 @@ void infix_to_postfix(char exp[]) {
 			top_op = pop(&s);
 			while (top_op != '(') {
 
+				printf("%c", top_op);
+				top_op = pop(&s);
 			}
+			break;
+		default:
+			printf("%c", ch);
+			break;
 		}
 	}
+	while (!is_empty(&s));
+}
+int main(void) {
+	char* s = "(2+3)*4+9";
+	printf("중위표기식 %s \n", s);
+	printf("후위표기식");
+	infix_to_postfix(s);
+	printf("\n");
+	return 0;
 }
