@@ -35,13 +35,13 @@ int is_full(QueueType* q) {
 //원형큐 출력 함수
 
 void queue_print(QueueType* q) {
-	printf("QUEUE(front=%d rear =%d) = ", q->front);
+	printf("QUEUE(front=%d rear =%d) = ", q->front,q->rear);
 	if (!is_empty(q)) {
 		int i = q->front;
 		do {
 			i = (i + 1) % (MAX_QUEUE_SIZE);
 			printf("%d l ", q->data[i]);
-			if (i == q->front)
+			if (i == q->rear)
 				break;
 		} while (i != q->front);
 	}
@@ -82,9 +82,17 @@ int main(void) {
 	printf("--데이터 추가 단계 --\n");
 	while (!is_full(&queue)) {
 		printf("정수를 입력하시오:");
-		scanf("%d", &element);
+		scanf_s("%d", &element);
 		enqueue(&queue, element);
 		queue_print(&queue);
 	}
-	printf("큐는")
+	printf("큐는 포화상태입니다. \n\n");
+	printf("--데이터 삭제 단계-- \n\n");
+	while (!is_empty(&queue)) {
+		element = dequeue(&queue);
+		printf("꺼내진 정수: %d \n", element);
+		queue_print(&queue);
+	}
+	printf("큐는 공백상태입니다.\n");
+	return 0;
 }
